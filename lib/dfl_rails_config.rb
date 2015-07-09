@@ -1,5 +1,5 @@
 require "dfl_rails_config/version"
 
 module DflRailsConfig
-  # Your code goes here...
+  # Do a generator to run all sub generators
 end

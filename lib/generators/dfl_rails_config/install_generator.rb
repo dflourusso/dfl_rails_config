@@ -1,5 +1,6 @@
 require 'rails/generators'
 
+# TODO: Dividir generator em partes. Ex: DeployGenerator, GemsGenerator, DatabaseGenerator, etc.
 module DflRailsConfig
   class InstallGenerator < Rails::Generators::Base
     source_root File.expand_path('../templates', __FILE__)
