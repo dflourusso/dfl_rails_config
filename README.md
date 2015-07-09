@@ -30,11 +30,6 @@ After install, run the command bellow:
 
     $ rails generate dfl_rails_config:install
 
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/dfl_rails_config.
-
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
