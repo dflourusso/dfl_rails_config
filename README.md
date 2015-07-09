@@ -2,11 +2,11 @@
 
 You can use this gem to generate common settings for your project. See below:
 
-  1 - Add the some gems for your project (devise, simple_form, slim, etc...)
-  2 - Set up the database
-  3 - Set deploy files
-  4 - Set I18n
-  ... And many other things.
+  - Add the some gems for your project (devise, simple_form, slim, etc...)
+  - Set up the database
+  - Set deploy files
+  - Set I18n
+  - ... And many other things.
 
 ## Installation
 
