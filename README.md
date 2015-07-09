@@ -1,8 +1,12 @@
 # DflRailsConfig
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dfl_rails_config`. To experiment with that code, run `bin/console` for an interactive prompt.
+You can use this gem to generate common settings for your project. See below:
 
-TODO: Delete this and the text above, and describe your gem
+  1 - Add the some gems for your project (devise, simple_form, slim, etc...)
+  2 - Set up the database
+  3 - Set deploy files
+  4 - Set I18n
+  ... And many other things.
 
 ## Installation
 
@@ -22,13 +26,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+After install, run the command bellow:
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake false` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+    $ rails generate dfl_rails_config:install
 
 ## Contributing
 
