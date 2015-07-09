@@ -1,0 +1,27 @@
+#!/bin/bash
+source $(dirname $0)"/_heroku_vars.sh"
+
+set -e
+
+# bump=${1:-patch} # executar bump minor antes de deploy_staging
+set -v
+
+heroku maintenance:on --app $PRODUCTION_APP
+
+heroku pipeline:promote --app $STAGING_APP
+heroku run rake db:migrate --app $PRODUCTION_APP
+heroku ps:restart --app $PRODUCTION_APP
+
+heroku maintenance:off --app $PRODUCTION_APP
+
+# salva a tag da versão atual
+git tag -a -m "v$(bump current | awk '{print $3}')" $(bump current | awk '{print $3}') master
+
+# depois já incrementa a versão no develop
+git checkout develop
+bump patch
+
+# atualiza repositório
+git push -v origin master:master
+git push -v origin develop:develop
+git push -v --tags origin

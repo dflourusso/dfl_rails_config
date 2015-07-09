@@ -1,0 +1,34 @@
+#!/bin/bash
+source $(dirname $0)"/_heroku_vars.sh"
+
+# parar se ocorrer algum erro
+set -e
+
+# definie a app heroku que será utilizado
+export HEROKU_APP=$STAGING_APP
+
+# exibe os comandos executados
+set -v
+
+git checkout master
+# traz atualizações do develop para o master, ignorando conflitos
+git merge --no-ff --rerere-autoupdate --no-edit -v --stat -X theirs develop
+git checkout develop
+
+# coloca a app online em modo de manutenção
+heroku maintenance:on
+
+# publica app no heroku
+git push $STAGING_APP master
+# roda as migrações
+heroku run rake db:migrate
+# reinicia a app no heroku
+heroku ps:restart
+
+# tira o app do modo manutenção
+heroku maintenance:off
+
+# atualiza repositório
+git push -v origin master:master
+git push -v origin develop:develop
+git push -v --tags origin

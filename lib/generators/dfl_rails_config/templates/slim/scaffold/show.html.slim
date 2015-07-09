@@ -1,0 +1,15 @@
+.row
+  .col-sm-6.col-sm-offset-3
+    .panel.panel-default
+      .panel-body
+        h2.text-center.text-success Exibindo <%= plural_table_name.titleize %>
+
+<%- attributes.reject(&:password_digest?).each do |attribute| -%>
+        p
+          strong = "#{han(:<%= attribute.name %>)}: "
+          = @<%= singular_table_name %>.<%= attribute.name %>
+<%- end -%>
+        hr
+        .btn-group
+          = back_button
+          = edit_button edit_<%= singular_table_name %>_path(@<%= singular_table_name %>)

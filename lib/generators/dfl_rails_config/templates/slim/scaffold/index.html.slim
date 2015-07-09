@@ -1,0 +1,20 @@
+h2.text-center.text-success Exibindo <%= plural_table_name.titleize %>
+
+table.table
+  thead
+    tr
+<%- attributes.each do |attribute| -%>
+      th = han(:<%= attribute.name %>)
+<%- end -%>
+      th.text-right = new_button new_<%= singular_table_name %>_path, 'btn-xs'
+  tbody
+    - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+      tr
+<%- attributes.each do |attribute| -%>
+        td = <%= singular_table_name %>.<%= attribute.name %>
+<%- end -%>
+        td.text-right
+          .btn-group
+            = show_button <%= singular_table_name %>, 'btn-xs'
+            = edit_button edit_<%= singular_table_name %>_path(<%= singular_table_name %>), 'btn-xs'
+            = destroy_button <%= singular_table_name %>, 'btn-xs'
