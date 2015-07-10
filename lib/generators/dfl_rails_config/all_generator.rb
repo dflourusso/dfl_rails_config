@@ -8,8 +8,8 @@ module DflRailsConfig
         # Load all generators in load path
         # https://github.com/rails/rails/blob/master/railties/lib/rails/generators.rb#L291-L303
         Rails::Generators.lookup!
-        DflRailsConfig.constants.each do |const|
-          generator_class = DflRailsConfig.const_get(const)
+        DflRailsConfig::Generators.constants.each do |const|
+          generator_class = DflRailsConfig::Generators.const_get(const)
           next if self.class == generator_class
           if generator_class <=> Rails::Generators::Base
             namespace = generator_klass_to_namespace(generator_class)
