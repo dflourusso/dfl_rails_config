@@ -1,11 +1,11 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'dfl_rails_config/version'
+require 'dfl_rails_config/generators/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "dfl_rails_config"
-  spec.version       = DflRailsConfig::VERSION
+  spec.version       = DflRailsConfig::Generators::VERSION
   spec.authors       = ["Daniel Fernando Lourusso"]
   spec.email         = ["dflourusso@gmail.com"]
 
