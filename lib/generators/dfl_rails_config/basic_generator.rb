@@ -14,7 +14,7 @@ module DflRailsConfig
       end
 
       def copy_deploy_files
-        directory 'bin/', 'bin/deploy/*'
+        directory 'bin/deploy', 'bin/'
       end
 
       def replace_deploy_vars
@@ -77,7 +77,7 @@ module DflRailsConfig
       def include_gems_directory
         string_to_append = "\nDir.glob('gemfiles/**/*.rb') { |f| eval_gemfile f }\n"
         regex = /Dir.glob\('gemfiles\/\*\*\/\*.rb'\)/
-        directory 'gemfiles/', 'gemfiles/basic'
+        directory 'gemfiles/basic/', 'gemfiles/'
         append_file 'Gemfile', string_to_append unless File.read('Gemfile') =~ regex
         Bundler.with_clean_env {run "bundle install --without production"}
       end
@@ -88,10 +88,6 @@ module DflRailsConfig
         remove_file file_name
         copy_file file_name, file_name
       end
-
-      # def rspec_install
-      #   run 'rails generate rspec:install'
-      # end
 
       def devise_install
         run 'rails generate devise:install'
@@ -109,10 +105,6 @@ module DflRailsConfig
       def simple_form_install
         run 'rails generate simple_form:install --bootstrap'  
       end
-
-      # def rspec_always_test_env
-      #   gsub_file 'spec/rails_helper.rb', "ENV['RAILS_ENV'] ||= 'test'", "ENV['RAILS_ENV'] = 'test'"
-      # end
 
       def i18n_pt_br
         file_name = 'config/application.rb'
