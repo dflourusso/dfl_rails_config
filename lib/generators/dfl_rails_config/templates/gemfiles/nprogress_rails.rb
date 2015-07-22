@@ -1,1 +1,0 @@
-gem 'nprogress-rails'

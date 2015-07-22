@@ -1,1 +1,0 @@
-gem 'bootstrap-filestyle-rails'
