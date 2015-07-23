@@ -121,6 +121,10 @@ module DflRailsConfig
         directory 'slim/', 'lib/templates/slim/'
       end
 
+      def copy_bundle_config
+        directory 'bundle/', '.bundle/'
+      end
+
       protected
 
       def application_name
