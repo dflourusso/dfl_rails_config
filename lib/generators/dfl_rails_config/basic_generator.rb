@@ -125,6 +125,18 @@ module DflRailsConfig
         directory 'bundle/', '.bundle/'
       end
 
+      def inject_flash_messages
+        unless File.read('Gemfile') =~ /flash_messages/
+          inject_into_file 'app/views/layouts/application.html.erb', after: "<body>" do
+            "\n<%= flash_messages :close, :fade %>"
+          end
+        end
+      end
+
+      def copy_application_helper
+        copy_file 'helpers/application_helper.rb', 'app/helpers/application_helper.rb'
+      end
+
       protected
 
       def application_name
