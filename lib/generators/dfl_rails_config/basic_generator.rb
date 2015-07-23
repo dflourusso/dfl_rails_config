@@ -82,30 +82,6 @@ module DflRailsConfig
         Bundler.with_clean_env {run "bundle install --without production"}
       end
 
-      def overcommit_install
-        # run 'overcommit --install'
-        file_name = '.overcommit.yml'
-        remove_file file_name
-        copy_file file_name, file_name
-      end
-
-      def devise_install
-        run 'rails generate devise:install'
-
-        #password length
-        old_config = 'config.password_length = 8..72'
-        new_config = 'config.password_length = Rails.env.production? ? 8..72 : 1..8'
-        gsub_file 'config/initializers/devise.rb', old_config, new_config
-      end
-
-      def kaminari_views
-        run 'rails g kaminari:views bootstrap3'
-      end
-
-      def simple_form_install
-        run 'rails generate simple_form:install --bootstrap'  
-      end
-
       def i18n_pt_br
         file_name = 'config/application.rb'
         gsub_file file_name, '# config.i18n.default_locale = :de', "config.i18n.default_locale = :'pt-BR'"
@@ -139,6 +115,10 @@ module DflRailsConfig
         file_name = 'app/assets/stylesheets/application.css.scss'
         remove_file rm_file_name
         copy_file file_name.split('/').last, file_name
+      end
+
+      def copy_scaffold_templates
+        directory 'slim/', 'lib/templates/slim/'
       end
 
       protected
